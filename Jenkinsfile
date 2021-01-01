@@ -30,8 +30,6 @@ pipeline {
             steps {
                 //sh 'ansible --version'
                 withAWS(credentials: 'aws-credentials', region: "${AWS_REGION}") {
-                    sh 'whoami'
-                    sh 'echo $PATH'
                     sh 'aws --version'
                     sh 'aws iam get-user'
                     sh 'eksctl version'
