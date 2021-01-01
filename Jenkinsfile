@@ -79,8 +79,8 @@ pipeline {
         stage('push docker image') {
             steps {
                 withDockerRegistry([credentialsId: "dockerhub", url: ""]) {
-                    sh 'docker tag ${DOCKER_IMAGE_NAME} vibinmj/${DOCKER_IMAGE_NAME}'
-                    sh 'docker push vibinmj/${DOCKER_IMAGE_NAME}'
+                    sh 'docker tag ${DOCKER_IMAGE_NAME} vibinmjohn/${DOCKER_IMAGE_NAME}'
+                    sh 'docker push vibinmjohn/${DOCKER_IMAGE_NAME}'
                 }  // see https://devops4solutions.com/publish-docker-image-to-dockerhub-using-jenkins-pipeline/
                 sh 'docker rmi -f $(docker images -q)'
                 sh 'docker image ls'
