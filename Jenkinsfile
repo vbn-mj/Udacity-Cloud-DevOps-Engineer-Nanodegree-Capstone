@@ -2,10 +2,10 @@
 // use double quotes to reference variables
 // Validate Jenkinfiles in VSCode: https://llu.is/validate-jenkinfiles-in-vscode/
 pipeline {
-    //agent none
-    agent {
-         label 'jenkins-agent-1'
-    }  // add a new agent: https://medium.com/@_oleksii_/how-to-deploy-jenkins-agent-and-connect-it-to-jenkins-master-in-microsoft-azure-ffeb085957c0
+    agent any
+    // agent {
+    //     label 'jenkins-agent-1'
+    // }  // add a new agent: https://medium.com/@_oleksii_/how-to-deploy-jenkins-agent-and-connect-it-to-jenkins-master-in-microsoft-azure-ffeb085957c0
     environment {
         AWS_REGION = 'us-west-2'
         EKS_CLUSTER_NAME = 'udacity-cloud-devops-capstone'
@@ -32,7 +32,7 @@ pipeline {
         //        docker { image 'amazon/aws-cli' 
         //                args '--entrypoint='
         //               }
-            }
+        //    }
             steps {
                 //sh 'ansible --version'
                 withAWS(credentials: 'aws-credentials', region: "${AWS_REGION}") {
