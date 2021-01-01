@@ -29,7 +29,9 @@ pipeline {
         }
         stage('verify aws-cli v2, eksctl, kubectl') {
             agent {
-                docker { image 'amazon/aws-cli' }
+                docker { image 'amazon/aws-cli' 
+                        args '--entrypoint='
+                       }
             }
             steps {
                 //sh 'ansible --version'
