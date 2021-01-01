@@ -12,7 +12,7 @@ pipeline {
         DOCKER_IMAGE_NAME = 'udacity-cloud-devops-capstone'
     }
     stages {
-      //  stage('verify the build system') {
+      stage('verify the build system') {
       //      agent {
       //          docker { image 'python:3' }
       //      }
