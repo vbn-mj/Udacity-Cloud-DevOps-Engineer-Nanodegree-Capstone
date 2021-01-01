@@ -5,11 +5,6 @@ pipeline {
     // agent {
     //     label 'jenkins-agent-1'
     // }  // add a new agent: https://medium.com/@_oleksii_/how-to-deploy-jenkins-agent-and-connect-it-to-jenkins-master-in-microsoft-azure-ffeb085957c0
-    agent {
-        docker { image 'python:3' 
-                 args '-u root:root'
-               }
-    }
     environment {
         AWS_REGION = 'us-west-2'
         EKS_CLUSTER_NAME = 'udacity-cloud-devops-capstone'
@@ -17,24 +12,27 @@ pipeline {
     }
     stages {
         stage('verify the build system') {
+            agent {
+                docker { image 'python:3' }
+            }
             steps {
                 sh 'pwd'
                 sh 'ls -la'
                 echo 'verify python environment'
                 sh 'python3 --version'
                 sh 'pip3 --version'
-                sh 'pip3 install awscli --user'
                 withEnv(["HOME=${env.WORKSPACE}"]) {
                     sh 'printenv'
                 }  // see https://stackoverflow.com/a/51688905
             }
         }
         stage('verify aws-cli v2, eksctl, kubectl') {
+            agent {
+                docker { image 'amazon/aws-cli' }
+            }
             steps {
                 //sh 'ansible --version'
                 withAWS(credentials: 'aws-credentials', region: "${AWS_REGION}") {
-                    sh 'export PATH=/root/.local/bin:$PATH'
-                    sh 'echo $PATH'
                     sh 'aws --version'
                     sh 'aws iam get-user'
                     sh 'eksctl version'
