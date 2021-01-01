@@ -6,7 +6,9 @@ pipeline {
     //     label 'jenkins-agent-1'
     // }  // add a new agent: https://medium.com/@_oleksii_/how-to-deploy-jenkins-agent-and-connect-it-to-jenkins-master-in-microsoft-azure-ffeb085957c0
     agent {
-        docker { image 'ubuntu:18.04' }
+        docker { image 'python:3' 
+                 args '-u root:root'
+               }
     }
     environment {
         AWS_REGION = 'us-west-2'
@@ -18,7 +20,6 @@ pipeline {
             steps {
                 sh 'pwd'
                 sh 'ls -la'
-                sh 'apt-get install python3 -y'
                 echo 'verify python environment'
                 sh 'python3 --version'
                 sh 'pip3 --version'
