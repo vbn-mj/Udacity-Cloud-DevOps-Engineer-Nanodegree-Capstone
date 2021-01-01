@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
         - name: simple-web-app
-          image: vibinmj/udacity-cloud-devops-capstone
+          image: vibinmjohn/udacity-cloud-devops-capstone
           imagePullPolicy: "Always"
           ports:
             - containerPort: 80
