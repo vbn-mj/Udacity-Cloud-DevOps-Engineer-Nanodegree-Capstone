@@ -21,6 +21,7 @@ pipeline {
                 echo 'verify python environment'
                 sh 'python3 --version'
                 sh 'pip3 --version'
+                sh 'pip3 install awscli'
                 withEnv(["HOME=${env.WORKSPACE}"]) {
                     sh 'printenv'
                 }  // see https://stackoverflow.com/a/51688905
