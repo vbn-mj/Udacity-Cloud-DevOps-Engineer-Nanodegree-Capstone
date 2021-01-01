@@ -2,7 +2,7 @@
 // use double quotes to reference variables
 // Validate Jenkinfiles in VSCode: https://llu.is/validate-jenkinfiles-in-vscode/
 pipeline {
-    agent any
+    agent { node { label 'master' } }
     // agent {
     //     label 'jenkins-agent-1'
     // }  // add a new agent: https://medium.com/@_oleksii_/how-to-deploy-jenkins-agent-and-connect-it-to-jenkins-master-in-microsoft-azure-ffeb085957c0
