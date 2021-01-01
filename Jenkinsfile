@@ -34,6 +34,7 @@ pipeline {
                 //sh 'ansible --version'
                 withAWS(credentials: 'aws-credentials', region: "${AWS_REGION}") {
                     sh 'export PATH=/root/.local/bin:$PATH'
+                    sh 'echo $PATH'
                     sh 'aws --version'
                     sh 'aws iam get-user'
                     sh 'eksctl version'
